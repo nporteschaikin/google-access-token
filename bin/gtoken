@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+require('coffee-script/register');
+
+var app = require('../lib')
+  , inquirer = require('inquirer');
+
+inquirer.prompt([
+  {
+    type: 'input',
+    name: 'client_id',
+    message: 'Google client ID?'
+  },
+  {
+    type: 'input',
+    name: 'client_secret',
+    message: 'Google client secret?'
+  },
+  {
+    type: 'input',
+    name: 'scope',
+    message: 'Scope of permissions? (separated by commas)'
+  },
+  {
+    type: 'list',
+    name: 'access_type',
+    message: 'Access type?',
+    choices: ['online', 'offline']
+  },
+  {
+    type: 'input',
+    name: 'port',
+    message: 'Port to run app on?',
+    default: 3000
+  }
+], function(answers) {
+  app(answers);
+})

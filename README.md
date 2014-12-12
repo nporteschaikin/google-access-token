@@ -10,15 +10,13 @@ Easily generate a Google access token, optionally with a refresh token.
 ### Installation
 
 ```sh
-$ git clone git@github.com:nporteschaikin/google-access-token
-$ cd google-access-token
-$ npm install
+$ npm install google-access-token -g
 ```
 
 ### Usage
 
 ```sh
-$ npm start
+$ gtoken
 ```
 
 ### Contributing

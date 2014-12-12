@@ -1,17 +1,22 @@
 {
   "name": "google-access-token",
-  "version": "0.0.0",
-  "author": "Carrot Creative <dev@carrotcreative.com>",
-  "description": "Quickly grab a Google access token",
+  "version": "0.0.1",
+  "author": "Noah Portes Chaikin <noah.porteschaikin@carrotcreative.com>",
+  "description": "Easily generate a Google access token, optionally with a refresh token.",
   "license": "MIT",
+  "keywords": [
+    "google",
+    "oauth"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/carrot/google-access-token.git"
   },
-  "main": "lib",
-  "scripts": {
-    "start": "./node_modules/.bin/coffee index.coffee"
+  "directories": {
+    "lib": "lib",
+    "bin": "bin"
   },
+  "main": "lib",
   "engines": {
     "node": "0.10.x"
   },
