@@ -43,17 +43,26 @@ inquirer.prompt [
   app = express()
   app.use body_parser.json()
 
+  address = (address, port, path) ->
+    if address is '0.0.0.0' then address = 'localhost'
+    addr = "http://#{address}:#{port}/"
+    if path then addr += path
+    addr
+
+  scope = answers.scope.split /,\s*/
+  scope[index] = "https://www.googleapis.com/auth/#{scope[index]}" for sc, index in scope
+
   console.log()
 
   server = app.listen answers.port, ->
     addr = server.address()
-    console.log "! ".bold.green + "Visit ".bold.white + "#{addr.address}:#{addr.port}!".white
-    console.log "! ".bold.green + "Be sure to set your Google app's callback URL to " + "http://#{addr.address}:#{addr.port}/callback".green
+    console.log "! ".bold.green + "Visit ".bold.white + "#{address(addr.address, addr.port)}".white
+    console.log "! ".bold.green + "Be sure to set your Google app's callback URL to " + address(addr.address, addr.port, 'callback').green
 
-    client  = new google.auth.OAuth2 answers.client_id, answers.client_secret, "http://#{addr.address}:#{addr.port}/callback"
+    client  = new google.auth.OAuth2 answers.client_id, answers.client_secret, address(addr.address, addr.port, 'callback')
 
     app.get '/', (req, res) ->
-      redirect_url = client.generateAuthUrl access_type: answers.access_type, scope: answers.scope.split(/,\s*/)
+      redirect_url = client.generateAuthUrl access_type: answers.access_type, scope: scope
       res.redirect redirect_url
 
     app.get '/callback', (req, res) ->
