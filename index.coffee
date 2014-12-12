@@ -3,7 +3,6 @@ body_parser = require 'body-parser'
 google      = require 'googleapis'
 inquirer    = require 'inquirer'
 colors      = require 'colors'
-argv        = require('minimist') process.argv.slice(2), alias: p: 'port'
 
 inquirer.prompt [
 
