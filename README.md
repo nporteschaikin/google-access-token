@@ -24,3 +24,7 @@ $ npm start
 ### Contributing
 
 Details on running tests and contributing [can be found here](CONTRIBUTING.md).
+
+### License
+
+MIT
